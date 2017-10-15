@@ -84,4 +84,4 @@ Keep coding!
 Cheers, Simon.
 
 
-@[Luke, how many stars are there in these galaxies?]({"stubs": ["src/universe.kt"], "command": "UniverseTest#test"})
+@[Example without Reified]({"stubs": ["src/de/swirtz/reified/NonReifiedExample.kt"], "command": "kotlin-compiler-runner.sh src/de/swirtz/reified/NonReifiedExample.kt"})
