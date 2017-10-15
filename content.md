@@ -28,23 +28,35 @@ Let's have a look at an example, where reified is really helpful. We want to cre
 
 **Compile Error**
 
-```kotlin runnable
+```kotlin
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
-fun <T> String.toKotlinObject(): T {
+fun <T : Any> String.toKotlinObject(): T {
     val mapper = jacksonObjectMapper()
     //does not compile!
     return mapper.readValue(this, T::class.java)
 }
 ```
-The readValue method wants us to provide the information which type it's supposed to parse the JsonObject to. We try to use the type parameter T and get its Class. This does not work and the compiler tells us: "Cannot use 'T' as reified type parameter. Use a class instead."
+The `readValue` function wants us to provide the information which type it's supposed to parse the `String` to. We try to use the type parameter `T` and get its `Class`. This does not work and the compiler tells us: **"Cannot use 'T' as reified type parameter. Use a class instead."**
 
-Working example without reified
+## Working example without reified
+```kotlin
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import kotlin.reflect.KClass
 
-fun <T> String.toKotlinObject(c: Class<T>): T {
-    val mapper = jacksonObjectMapper()
-    return mapper.readValue(JsonObject(this).encode(), c)
+data class SimpleText(val simple: String)
+
+fun main(args: Array<String>) {
+    val asObject = """{"simple": "text"}""".toKotlinObject(SimpleText::class)
+    println(asObject)
 }
+
+fun <T : Any> String.toKotlinObject(c: KClass<T>): T {
+    val mapper = jacksonObjectMapper()
+    return mapper.readValue(this, c.java)
+}
+````
+
 In a next step we pass the Class of T explicitly which can directly be used as an argument to readValue. This works and is actually the same approach used in Java code for such scenarios. The function can be called like so:
 
 "{}".toKotlinObject(MyJsonType::class.java)
