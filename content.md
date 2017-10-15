@@ -40,7 +40,7 @@ fun <T : Any> String.toKotlinObject(): T {
 The `readValue` function wants us to provide the information which type it's supposed to parse the `String` to. We try to use the type parameter `T` and get its `Class`. This does not work and the compiler tells us: **"Cannot use 'T' as reified type parameter. Use a class instead."**
 
 ## Working example without reified
-```kotlin
+```kotlin runnable
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import kotlin.reflect.KClass
 
