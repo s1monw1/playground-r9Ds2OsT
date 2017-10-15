@@ -84,4 +84,4 @@ Keep coding!
 Cheers, Simon.
 
 
-@[Example without Reified]({"stubs": ["src/de/swirtz/reified/NonReifiedExample.kt"], "command": "kotlin-maven3-junit4-runner src/de/swirtz/reified/NonReifiedExample.kt"})
+@[Example withour Reified]({"stubs": ["src/de/swirtz/reified/NonReifiedExample.kt"], "command": "src/de/swirtz/reified/NonReifiedExample#main"})
