@@ -1,7 +1,7 @@
-title: Kotlin Maven Project
+title: Kotlin Simplified Generic Methods with Reified Types
 plan:
-- title: Welcome
-  statement: markdowns/welcome.md
+- title: Kotlin Simplified Generic Methods with Reified Types
+  statement: content.md
 projects:
   java:
     root: /kotlin-project
